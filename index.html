@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دفتر طلبات البائع</title>
+<link rel="stylesheet" href="style.css">
+<style>textarea{min-height:110px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;text-align:center}.stats b{display:block;font-size:19px;color:#1f7a4d}
+select{font:inherit;padding:6px;border-radius:8px;border:1.5px solid #cfdcd4}.ord{border-bottom:1px solid #edf2ee;padding:10px 0}.ord small{color:#667}.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.filters button.on{background:#1f7a4d;color:#fff}</style>
+</head>
+<body>
+<header><h1>دفتر طلبات البائع</h1><p>الصق رسالة العميل من واتساب، والطلب يتسجل لوحده</p></header>
+<main>
+<section class="card">
+  <h2>طلب جديد</h2>
+  <label>رسالة العميل<textarea id="raw" placeholder="مثال:
+أنا محمد علي
+01012345678
+القاهرة - مدينة نصر - شارع عباس العقاد عمارة 5
+عايز 2 تيشيرت اسود مقاس L
+السعر 450"></textarea></label>
+  <div class="row"><button class="primary" id="parse">حلّل الرسالة</button></div>
+  <form id="f" class="grid" hidden style="margin-top:12px">
+    <label>الاسم<input id="name" required></label>
+    <label>الموبايل<input id="phone" inputmode="tel" required></label>
+    <label>العنوان<input id="addr"></label>
+    <label>الطلب<input id="items" required></label>
+    <label>الإجمالي (جنيه)<input id="total" type="number" min="0" required></label>
+    <label>الدفع<select id="pay"><option value="cod">كاش عند الاستلام</option><option value="paid">مدفوع (انستاباي / فودافون كاش)</option></select></label>
+    <button class="primary">احفظ الطلب</button>
+  </form>
+</section>
+<section class="card"><div class="stats" id="stats"></div></section>
+<section class="card">
+  <h2>الطلبات</h2>
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+</section>
+<button class="danger" id="clear">مسح كل الطلبات</button>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
